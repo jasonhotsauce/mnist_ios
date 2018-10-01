@@ -88,6 +88,9 @@ class ViewController: UIViewController {
     
     @objc
     private func didTapPredict() {
+        guard canvasView.hasContent else {
+            return
+        }
         predictLabel.text = nil
         pendingWorkItem?.cancel()
         guard let pixelBuff = layerContentToPixelBuffPipline(first: content(),

@@ -13,7 +13,7 @@ typealias LayerContent = (CALayer, PixelBuffSize) -> CGContext?
 typealias ViewPixelConverter = (CGContext) -> CVPixelBuffer?
 typealias Pipline = (CALayer, PixelBuffSize) -> CVPixelBuffer?
 
-func content() -> (CALayer, PixelBuffSize) -> CGContext? {
+func content() -> LayerContent {
     return { layer, size in
         let colorSpace = CGColorSpaceCreateDeviceGray()
         let bitmapInfo = CGImageAlphaInfo.none.rawValue
@@ -33,7 +33,7 @@ func content() -> (CALayer, PixelBuffSize) -> CGContext? {
     }
 }
 
-func pixelBuff() -> (CGContext) -> CVPixelBuffer? {
+func pixelBuff() -> ViewPixelConverter {
     return { context in
         let attr = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue,
                     kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary

@@ -57,6 +57,10 @@ extension CanvasView {
         lines = []
         setNeedsDisplay()
     }
+    
+    var hasContent: Bool {
+        return lines.count > 0
+    }
 }
 
 private struct Line {
